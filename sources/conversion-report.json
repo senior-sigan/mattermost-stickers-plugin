@@ -1,0 +1,657 @@
+{
+  "size": 192,
+  "count": 108,
+  "source_bytes": 2207396,
+  "resized_png_bytes": 3747601,
+  "quantized_bytes": 1368946,
+  "files": [
+    {
+      "file": "cumemoji_stickers/001.png",
+      "source_bytes": 25986,
+      "resized_png_bytes": 48518,
+      "quantized_bytes": 16705
+    },
+    {
+      "file": "cumemoji_stickers/002.png",
+      "source_bytes": 21910,
+      "resized_png_bytes": 33041,
+      "quantized_bytes": 11470
+    },
+    {
+      "file": "cumemoji_stickers/003.png",
+      "source_bytes": 15132,
+      "resized_png_bytes": 25857,
+      "quantized_bytes": 9317
+    },
+    {
+      "file": "cumemoji_stickers/004.png",
+      "source_bytes": 25044,
+      "resized_png_bytes": 43691,
+      "quantized_bytes": 14195
+    },
+    {
+      "file": "cumemoji_stickers/005.png",
+      "source_bytes": 28922,
+      "resized_png_bytes": 32481,
+      "quantized_bytes": 11283
+    },
+    {
+      "file": "cumemoji_stickers/006.png",
+      "source_bytes": 25830,
+      "resized_png_bytes": 42242,
+      "quantized_bytes": 15421
+    },
+    {
+      "file": "cumemoji_stickers/007.png",
+      "source_bytes": 20990,
+      "resized_png_bytes": 32645,
+      "quantized_bytes": 12317
+    },
+    {
+      "file": "cumemoji_stickers/008.png",
+      "source_bytes": 16822,
+      "resized_png_bytes": 32584,
+      "quantized_bytes": 11587
+    },
+    {
+      "file": "cumemoji_stickers/009.png",
+      "source_bytes": 26612,
+      "resized_png_bytes": 40554,
+      "quantized_bytes": 14601
+    },
+    {
+      "file": "cumemoji_stickers/010.png",
+      "source_bytes": 20738,
+      "resized_png_bytes": 31705,
+      "quantized_bytes": 11786
+    },
+    {
+      "file": "cumemoji_stickers/011.png",
+      "source_bytes": 21078,
+      "resized_png_bytes": 34132,
+      "quantized_bytes": 13082
+    },
+    {
+      "file": "cumemoji_stickers/012.png",
+      "source_bytes": 18770,
+      "resized_png_bytes": 37146,
+      "quantized_bytes": 13912
+    },
+    {
+      "file": "cumemoji_stickers/013.png",
+      "source_bytes": 16990,
+      "resized_png_bytes": 22471,
+      "quantized_bytes": 8293
+    },
+    {
+      "file": "cumemoji_stickers/014.png",
+      "source_bytes": 28476,
+      "resized_png_bytes": 40005,
+      "quantized_bytes": 14668
+    },
+    {
+      "file": "cumemoji_stickers/015.png",
+      "source_bytes": 18446,
+      "resized_png_bytes": 27763,
+      "quantized_bytes": 9699
+    },
+    {
+      "file": "cumemoji_stickers/016.png",
+      "source_bytes": 20582,
+      "resized_png_bytes": 32104,
+      "quantized_bytes": 11884
+    },
+    {
+      "file": "cumemoji_stickers/017.png",
+      "source_bytes": 22726,
+      "resized_png_bytes": 33654,
+      "quantized_bytes": 12314
+    },
+    {
+      "file": "cumemoji_stickers/018.png",
+      "source_bytes": 17646,
+      "resized_png_bytes": 36344,
+      "quantized_bytes": 12686
+    },
+    {
+      "file": "cumemoji_stickers/019.png",
+      "source_bytes": 21818,
+      "resized_png_bytes": 41257,
+      "quantized_bytes": 15066
+    },
+    {
+      "file": "cumemoji_stickers/020.png",
+      "source_bytes": 20216,
+      "resized_png_bytes": 38122,
+      "quantized_bytes": 13940
+    },
+    {
+      "file": "cumemoji_stickers/021.png",
+      "source_bytes": 25696,
+      "resized_png_bytes": 33805,
+      "quantized_bytes": 12152
+    },
+    {
+      "file": "cumemoji_stickers/022.png",
+      "source_bytes": 25230,
+      "resized_png_bytes": 30539,
+      "quantized_bytes": 12338
+    },
+    {
+      "file": "cumemoji_stickers/023.png",
+      "source_bytes": 27088,
+      "resized_png_bytes": 31221,
+      "quantized_bytes": 12008
+    },
+    {
+      "file": "cumemoji_stickers/024.png",
+      "source_bytes": 24028,
+      "resized_png_bytes": 33632,
+      "quantized_bytes": 11818
+    },
+    {
+      "file": "cumemoji_stickers/025.png",
+      "source_bytes": 25060,
+      "resized_png_bytes": 36911,
+      "quantized_bytes": 12808
+    },
+    {
+      "file": "cumemoji_stickers/026.png",
+      "source_bytes": 25364,
+      "resized_png_bytes": 32121,
+      "quantized_bytes": 11995
+    },
+    {
+      "file": "cumemoji_stickers/027.png",
+      "source_bytes": 21598,
+      "resized_png_bytes": 37107,
+      "quantized_bytes": 12189
+    },
+    {
+      "file": "cumemoji_stickers/028.png",
+      "source_bytes": 21976,
+      "resized_png_bytes": 40590,
+      "quantized_bytes": 14175
+    },
+    {
+      "file": "cumemoji_stickers/029.png",
+      "source_bytes": 10226,
+      "resized_png_bytes": 22051,
+      "quantized_bytes": 8804
+    },
+    {
+      "file": "cumemoji_stickers/030.png",
+      "source_bytes": 34822,
+      "resized_png_bytes": 47309,
+      "quantized_bytes": 16279
+    },
+    {
+      "file": "cumemoji_stickers/031.png",
+      "source_bytes": 16684,
+      "resized_png_bytes": 45093,
+      "quantized_bytes": 18006
+    },
+    {
+      "file": "cumemoji_stickers/032.png",
+      "source_bytes": 24614,
+      "resized_png_bytes": 57723,
+      "quantized_bytes": 18586
+    },
+    {
+      "file": "cumemoji_stickers/033.png",
+      "source_bytes": 26408,
+      "resized_png_bytes": 38223,
+      "quantized_bytes": 14394
+    },
+    {
+      "file": "cumemoji_stickers/034.png",
+      "source_bytes": 19272,
+      "resized_png_bytes": 33699,
+      "quantized_bytes": 11991
+    },
+    {
+      "file": "cumemoji_stickers/035.png",
+      "source_bytes": 18860,
+      "resized_png_bytes": 33066,
+      "quantized_bytes": 12268
+    },
+    {
+      "file": "cumemoji_stickers/036.png",
+      "source_bytes": 19766,
+      "resized_png_bytes": 29169,
+      "quantized_bytes": 11765
+    },
+    {
+      "file": "cumemoji_stickers/037.png",
+      "source_bytes": 14426,
+      "resized_png_bytes": 40982,
+      "quantized_bytes": 15316
+    },
+    {
+      "file": "cumemoji_stickers/038.png",
+      "source_bytes": 17870,
+      "resized_png_bytes": 30733,
+      "quantized_bytes": 11829
+    },
+    {
+      "file": "cumemoji_stickers/039.png",
+      "source_bytes": 13808,
+      "resized_png_bytes": 22805,
+      "quantized_bytes": 8406
+    },
+    {
+      "file": "cumemoji_stickers/040.png",
+      "source_bytes": 26202,
+      "resized_png_bytes": 36977,
+      "quantized_bytes": 13788
+    },
+    {
+      "file": "cumemoji_stickers/041.png",
+      "source_bytes": 24666,
+      "resized_png_bytes": 37146,
+      "quantized_bytes": 14023
+    },
+    {
+      "file": "cumemoji_stickers/042.png",
+      "source_bytes": 17104,
+      "resized_png_bytes": 28642,
+      "quantized_bytes": 10512
+    },
+    {
+      "file": "cumemoji_stickers/043.png",
+      "source_bytes": 17022,
+      "resized_png_bytes": 27442,
+      "quantized_bytes": 9173
+    },
+    {
+      "file": "cumemoji_stickers/044.png",
+      "source_bytes": 29282,
+      "resized_png_bytes": 47167,
+      "quantized_bytes": 16151
+    },
+    {
+      "file": "cumemoji_stickers/045.png",
+      "source_bytes": 11958,
+      "resized_png_bytes": 27413,
+      "quantized_bytes": 9152
+    },
+    {
+      "file": "cumemoji_stickers/046.png",
+      "source_bytes": 20882,
+      "resized_png_bytes": 31392,
+      "quantized_bytes": 11293
+    },
+    {
+      "file": "cumemoji_stickers/047.png",
+      "source_bytes": 21450,
+      "resized_png_bytes": 32864,
+      "quantized_bytes": 12476
+    },
+    {
+      "file": "cumemoji_stickers/048.png",
+      "source_bytes": 15382,
+      "resized_png_bytes": 32648,
+      "quantized_bytes": 12641
+    },
+    {
+      "file": "cumemoji_stickers/049.png",
+      "source_bytes": 30760,
+      "resized_png_bytes": 48944,
+      "quantized_bytes": 17586
+    },
+    {
+      "file": "cumemoji_stickers/050.png",
+      "source_bytes": 20806,
+      "resized_png_bytes": 40583,
+      "quantized_bytes": 13681
+    },
+    {
+      "file": "cumemoji_stickers/051.png",
+      "source_bytes": 23442,
+      "resized_png_bytes": 31072,
+      "quantized_bytes": 11538
+    },
+    {
+      "file": "cumemoji_stickers/052.png",
+      "source_bytes": 21454,
+      "resized_png_bytes": 32147,
+      "quantized_bytes": 10827
+    },
+    {
+      "file": "cumemoji_stickers/053.png",
+      "source_bytes": 25558,
+      "resized_png_bytes": 39431,
+      "quantized_bytes": 15062
+    },
+    {
+      "file": "cumemoji_stickers/054.png",
+      "source_bytes": 24018,
+      "resized_png_bytes": 36046,
+      "quantized_bytes": 12929
+    },
+    {
+      "file": "cumemoji_stickers/055.png",
+      "source_bytes": 20766,
+      "resized_png_bytes": 41711,
+      "quantized_bytes": 15024
+    },
+    {
+      "file": "cumemoji_stickers/056.png",
+      "source_bytes": 30020,
+      "resized_png_bytes": 35417,
+      "quantized_bytes": 12783
+    },
+    {
+      "file": "cumemoji_stickers/057.png",
+      "source_bytes": 21448,
+      "resized_png_bytes": 31759,
+      "quantized_bytes": 11621
+    },
+    {
+      "file": "cumemoji_stickers/058.png",
+      "source_bytes": 19220,
+      "resized_png_bytes": 32669,
+      "quantized_bytes": 11951
+    },
+    {
+      "file": "cumemoji_stickers/059.png",
+      "source_bytes": 15678,
+      "resized_png_bytes": 17744,
+      "quantized_bytes": 6693
+    },
+    {
+      "file": "cumemoji_stickers/060.png",
+      "source_bytes": 18360,
+      "resized_png_bytes": 45569,
+      "quantized_bytes": 16095
+    },
+    {
+      "file": "cumemoji_stickers/061.png",
+      "source_bytes": 15318,
+      "resized_png_bytes": 30650,
+      "quantized_bytes": 12026
+    },
+    {
+      "file": "cumemoji_stickers/062.png",
+      "source_bytes": 18500,
+      "resized_png_bytes": 31327,
+      "quantized_bytes": 11904
+    },
+    {
+      "file": "cumemoji_stickers/063.png",
+      "source_bytes": 19592,
+      "resized_png_bytes": 28614,
+      "quantized_bytes": 10302
+    },
+    {
+      "file": "cumemoji_stickers/064.png",
+      "source_bytes": 28870,
+      "resized_png_bytes": 36797,
+      "quantized_bytes": 13593
+    },
+    {
+      "file": "cumemoji_stickers/065.png",
+      "source_bytes": 15410,
+      "resized_png_bytes": 28987,
+      "quantized_bytes": 11206
+    },
+    {
+      "file": "cumemoji_stickers/066.png",
+      "source_bytes": 14956,
+      "resized_png_bytes": 29724,
+      "quantized_bytes": 10191
+    },
+    {
+      "file": "cumemoji_stickers/067.png",
+      "source_bytes": 18484,
+      "resized_png_bytes": 32612,
+      "quantized_bytes": 11371
+    },
+    {
+      "file": "cumemoji_stickers/068.png",
+      "source_bytes": 17996,
+      "resized_png_bytes": 30516,
+      "quantized_bytes": 11446
+    },
+    {
+      "file": "cumemoji_stickers/069.png",
+      "source_bytes": 14978,
+      "resized_png_bytes": 25441,
+      "quantized_bytes": 10327
+    },
+    {
+      "file": "cumemoji_stickers/070.png",
+      "source_bytes": 9848,
+      "resized_png_bytes": 17365,
+      "quantized_bytes": 7015
+    },
+    {
+      "file": "cumemoji_stickers/071.png",
+      "source_bytes": 19806,
+      "resized_png_bytes": 25149,
+      "quantized_bytes": 9746
+    },
+    {
+      "file": "cumemoji_stickers/072.png",
+      "source_bytes": 18482,
+      "resized_png_bytes": 37727,
+      "quantized_bytes": 12634
+    },
+    {
+      "file": "cumemoji_stickers/073.png",
+      "source_bytes": 23726,
+      "resized_png_bytes": 33294,
+      "quantized_bytes": 12679
+    },
+    {
+      "file": "cumemoji_stickers/074.png",
+      "source_bytes": 18176,
+      "resized_png_bytes": 31468,
+      "quantized_bytes": 11915
+    },
+    {
+      "file": "cumemoji_stickers/075.png",
+      "source_bytes": 26830,
+      "resized_png_bytes": 45083,
+      "quantized_bytes": 16042
+    },
+    {
+      "file": "cumemoji_stickers/076.png",
+      "source_bytes": 12656,
+      "resized_png_bytes": 34935,
+      "quantized_bytes": 12946
+    },
+    {
+      "file": "cumemoji_stickers/077.png",
+      "source_bytes": 17770,
+      "resized_png_bytes": 23368,
+      "quantized_bytes": 9049
+    },
+    {
+      "file": "cumemoji_stickers/078.png",
+      "source_bytes": 18090,
+      "resized_png_bytes": 25460,
+      "quantized_bytes": 9020
+    },
+    {
+      "file": "cumemoji_stickers/079.png",
+      "source_bytes": 21974,
+      "resized_png_bytes": 29398,
+      "quantized_bytes": 10684
+    },
+    {
+      "file": "cumemoji_stickers/080.png",
+      "source_bytes": 14238,
+      "resized_png_bytes": 21062,
+      "quantized_bytes": 7290
+    },
+    {
+      "file": "cumemoji_stickers/081.png",
+      "source_bytes": 15358,
+      "resized_png_bytes": 20319,
+      "quantized_bytes": 7242
+    },
+    {
+      "file": "cumemoji_stickers/082.png",
+      "source_bytes": 22204,
+      "resized_png_bytes": 32952,
+      "quantized_bytes": 12650
+    },
+    {
+      "file": "cumemoji_stickers/083.png",
+      "source_bytes": 19890,
+      "resized_png_bytes": 30885,
+      "quantized_bytes": 10520
+    },
+    {
+      "file": "cumemoji_stickers/084.png",
+      "source_bytes": 21356,
+      "resized_png_bytes": 47293,
+      "quantized_bytes": 16438
+    },
+    {
+      "file": "cumemoji_stickers/085.png",
+      "source_bytes": 23004,
+      "resized_png_bytes": 29857,
+      "quantized_bytes": 10009
+    },
+    {
+      "file": "cumemoji_stickers/086.png",
+      "source_bytes": 21062,
+      "resized_png_bytes": 29576,
+      "quantized_bytes": 10236
+    },
+    {
+      "file": "cumemoji_stickers/087.png",
+      "source_bytes": 18082,
+      "resized_png_bytes": 40547,
+      "quantized_bytes": 14201
+    },
+    {
+      "file": "cumemoji_stickers/088.png",
+      "source_bytes": 22060,
+      "resized_png_bytes": 35990,
+      "quantized_bytes": 12630
+    },
+    {
+      "file": "cumemoji_stickers/089.png",
+      "source_bytes": 13894,
+      "resized_png_bytes": 38151,
+      "quantized_bytes": 13661
+    },
+    {
+      "file": "cumemoji_stickers/090.png",
+      "source_bytes": 16384,
+      "resized_png_bytes": 38689,
+      "quantized_bytes": 15597
+    },
+    {
+      "file": "cumemoji_stickers/091.png",
+      "source_bytes": 14790,
+      "resized_png_bytes": 38165,
+      "quantized_bytes": 15644
+    },
+    {
+      "file": "cumemoji_stickers/092.png",
+      "source_bytes": 18770,
+      "resized_png_bytes": 36905,
+      "quantized_bytes": 14226
+    },
+    {
+      "file": "cumemoji_stickers/093.png",
+      "source_bytes": 16322,
+      "resized_png_bytes": 37692,
+      "quantized_bytes": 14703
+    },
+    {
+      "file": "cumemoji_stickers/094.png",
+      "source_bytes": 32648,
+      "resized_png_bytes": 42916,
+      "quantized_bytes": 15574
+    },
+    {
+      "file": "cumemoji_stickers/095.png",
+      "source_bytes": 21640,
+      "resized_png_bytes": 45255,
+      "quantized_bytes": 16982
+    },
+    {
+      "file": "cumemoji_stickers/096.png",
+      "source_bytes": 20860,
+      "resized_png_bytes": 35095,
+      "quantized_bytes": 14620
+    },
+    {
+      "file": "cumemoji_stickers/097.png",
+      "source_bytes": 24880,
+      "resized_png_bytes": 41527,
+      "quantized_bytes": 16083
+    },
+    {
+      "file": "cumemoji_stickers/098.png",
+      "source_bytes": 22984,
+      "resized_png_bytes": 44490,
+      "quantized_bytes": 16722
+    },
+    {
+      "file": "cumemoji_stickers/099.png",
+      "source_bytes": 19942,
+      "resized_png_bytes": 48768,
+      "quantized_bytes": 19408
+    },
+    {
+      "file": "cumemoji_stickers/100.png",
+      "source_bytes": 22368,
+      "resized_png_bytes": 54116,
+      "quantized_bytes": 19745
+    },
+    {
+      "file": "cumemoji_stickers/101.png",
+      "source_bytes": 14746,
+      "resized_png_bytes": 34417,
+      "quantized_bytes": 12006
+    },
+    {
+      "file": "cumemoji_stickers/102.png",
+      "source_bytes": 17288,
+      "resized_png_bytes": 37098,
+      "quantized_bytes": 13182
+    },
+    {
+      "file": "cumemoji_stickers/103.png",
+      "source_bytes": 20822,
+      "resized_png_bytes": 40374,
+      "quantized_bytes": 14660
+    },
+    {
+      "file": "cumemoji_stickers/104.png",
+      "source_bytes": 17554,
+      "resized_png_bytes": 37359,
+      "quantized_bytes": 14935
+    },
+    {
+      "file": "cumemoji_stickers/105.png",
+      "source_bytes": 13002,
+      "resized_png_bytes": 30509,
+      "quantized_bytes": 11928
+    },
+    {
+      "file": "cumemoji_stickers/106.png",
+      "source_bytes": 16100,
+      "resized_png_bytes": 31072,
+      "quantized_bytes": 10035
+    },
+    {
+      "file": "cumemoji_stickers/107.png",
+      "source_bytes": 25020,
+      "resized_png_bytes": 41098,
+      "quantized_bytes": 15366
+    },
+    {
+      "file": "cumemoji_stickers/108.png",
+      "source_bytes": 5658,
+      "resized_png_bytes": 9631,
+      "quantized_bytes": 2205
+    }
+  ]
+}
