@@ -3,6 +3,7 @@ import {createPortal} from 'react-dom';
 import {editorContext, pluginID, request, sendSticker, siteBase, stickerPostType} from './api.mjs';
 import StickerPost from './sticker_post.jsx';
 import AdminStickers from './admin_stickers.jsx';
+import StickerGrid from './sticker_grid.jsx';
 import css from './style.css';
 
 const openEvent = `${pluginID}:open`;
@@ -33,7 +34,10 @@ function Picker({target, store, onClose}) {
     }, []);
 
     useEffect(() => {
-        function positionPanel() {
+        function positionPanel(event) {
+            // Scrolling the catalog does not move its anchor. Avoid a layout
+            // read and a full picker render on every internal scroll event.
+            if (event?.type === 'scroll' && panel.current?.contains(event.target)) { return; }
             const rect = target.anchor.getBoundingClientRect();
             const height = Math.min(420, window.innerHeight - 16);
             const width = Math.min(360, window.innerWidth - 16);
@@ -81,12 +85,7 @@ function Picker({target, store, onClose}) {
             <button type='button' disabled={busy} className='mm-stickers-icon' title='Закрыть' aria-label='Закрыть' onClick={onClose}>×</button>
         </header>
         {error && <div className='mm-stickers-error' role='alert'>{error}</div>}
-        <div className='mm-stickers-grid' tabIndex={0} aria-label='Каталог стикеров'>
-            {loading ? <p className='mm-stickers-empty'>Загрузка…</p> : stickers.map((sticker) => <button type='button' className='mm-stickers-tile' key={sticker.id} disabled={busy} title={`${sticker.pack} · ${sticker.name}`} aria-label={`Отправить ${sticker.name}`} onClick={() => send(sticker)}>
-                <img src={`${endpoint}/image/${sticker.id}`} alt={sticker.name} loading='lazy' draggable={false}/>
-            </button>)}
-            {!loading && !stickers.length && <p className='mm-stickers-empty'>Стикеров пока нет. Обратитесь к администратору.</p>}
-        </div>
+        <StickerGrid stickers={stickers} loading={loading} busy={busy} endpoint={endpoint} onSend={send}/>
         <footer role='status'>{status || 'Нажмите на стикер, чтобы отправить'}</footer>
     </section>, document.body);
 }

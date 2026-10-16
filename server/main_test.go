@@ -9,6 +9,7 @@ import (
 	"net/http/httptest"
 	"os"
 	"path/filepath"
+	"sort"
 	"testing"
 
 	"github.com/mattermost/mattermost/server/public/model"
@@ -17,23 +18,35 @@ import (
 
 type fakeAPI struct {
 	plugin.API
-	values map[string][]byte
-	bundle string
-	roles  string
+	values  map[string][]byte
+	bundle  string
+	roles   string
+	gets    []string
+	failSet string
 }
 
 func (a *fakeAPI) GetUser(id string) (*model.User, *model.AppError) {
 	return &model.User{Id: id, Roles: a.roles}, nil
 }
 
-func (a *fakeAPI) GetBundlePath() (string, error)           { return a.bundle, nil }
-func (a *fakeAPI) KVGet(k string) ([]byte, *model.AppError) { return a.values[k], nil }
-func (a *fakeAPI) KVSet(k string, v []byte) *model.AppError { a.values[k] = v; return nil }
+func (a *fakeAPI) GetBundlePath() (string, error) { return a.bundle, nil }
+func (a *fakeAPI) KVGet(k string) ([]byte, *model.AppError) {
+	a.gets = append(a.gets, k)
+	return a.values[k], nil
+}
+func (a *fakeAPI) KVSet(k string, v []byte) *model.AppError {
+	if k == a.failSet {
+		return model.NewAppError("test", "write_failed", nil, "", 500)
+	}
+	a.values[k] = append([]byte{}, v...)
+	return nil
+}
 func (a *fakeAPI) KVList(page, size int) ([]string, *model.AppError) {
 	keys := []string{}
 	for k := range a.values {
 		keys = append(keys, k)
 	}
+	sort.Strings(keys)
 	if page*size >= len(keys) {
 		return []string{}, nil
 	}
@@ -45,7 +58,11 @@ func (a *fakeAPI) KVList(page, size int) ([]string, *model.AppError) {
 }
 
 func TestBundledPNG(t *testing.T) {
-	files, err := filepath.Glob("../stickers/*/*.png")
+	root := os.Getenv("STICKERS_SOURCE")
+	if root == "" {
+		root = "../stickers"
+	}
+	files, err := filepath.Glob(filepath.Join(root, "*", "*.png"))
 	if err != nil || len(files) == 0 {
 		t.Fatal("missing example stickers", err)
 	}
@@ -127,7 +144,7 @@ func TestHTTPUploadAndRead(t *testing.T) {
 	if w = request("GET", "/image/../../etc/passwd", nil, true, false); w.Code != 404 {
 		t.Fatal(w.Code)
 	}
-	// Repeated identical uploads occupy one key, surviving new plugin instances.
+	// Repeated identical uploads survive new plugin instances without duplicates.
 	request("POST", "/stickers", data, true, true)
 	restarted := &Plugin{bundled: map[string]Sticker{}}
 	restarted.SetAPI(p.API)

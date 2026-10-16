@@ -2,7 +2,7 @@
   "id": "ru.senior-sigan.stickers",
   "name": "Stickers",
   "description": "PNG stickers with a scrollable picker and one-click sending.",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "min_server_version": "11.7.3",
   "server": {
     "executables": {

@@ -5,6 +5,7 @@ import path from 'node:path';
 
 const manifest = JSON.parse(await readFile('plugin.json', 'utf8'));
 const output = path.resolve('build', manifest.id);
+const stickerSource = process.env.STICKERS_SOURCE || 'stickers';
 await mkdir(`${output}/webapp`, {recursive: true});
 await build({
     entryPoints: ['webapp/main.jsx'], outfile: `${output}/webapp/main.js`, bundle: true, minify: true,
@@ -18,7 +19,7 @@ await cp('plugin.json', `${output}/plugin.json`);
 await rm(`${output}/assets`, {recursive: true, force: true});
 await mkdir(`${output}/assets`, {recursive: true});
 // Ship only prepared PNG assets, never source images or conversion reports.
-await cp('stickers', `${output}/assets/stickers`, {recursive: true, filter: async (source) => {
+await cp(stickerSource, `${output}/assets/stickers`, {recursive: true, filter: async (source) => {
     const info = await lstat(source);
     return info.isDirectory() || (info.isFile() && path.extname(source).toLowerCase() === '.png');
 }});

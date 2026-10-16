@@ -8,6 +8,7 @@
 .mm-stickers-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-content:start;gap:4px;padding:8px;overflow-y:auto;overscroll-behavior:contain;min-height:0;flex:1;scrollbar-gutter:stable}
 .mm-stickers-tile{display:flex;align-items:center;justify-content:center;min-width:0;aspect-ratio:1;padding:5px;border:0;border-radius:8px;background:transparent;cursor:pointer;transition:background .1s}
 .mm-stickers-tile:hover{background:rgba(var(--center-channel-color-rgb,61,60,64),.08)}
+.mm-stickers-more{grid-column:1/-1;padding:10px;border:0;border-radius:5px;color:var(--link-color,#1c58d9);background:transparent;cursor:pointer}
 .mm-stickers-tile img{display:block;width:100%;height:100%;object-fit:contain}.mm-stickers-panel button:disabled{opacity:.45;cursor:wait}
 .mm-stickers-panel footer{padding:8px 12px;font-size:11px;opacity:.65;flex-shrink:0;border-top:1px solid rgba(var(--center-channel-color-rgb,61,60,64),.1)}
 .mm-stickers-empty{grid-column:1/-1;text-align:center;padding:35px 0;opacity:.65}.mm-stickers-error{padding:8px 12px;color:var(--error-text,#b42318);background:rgba(180,35,24,.08);font-size:12px;max-height:95px;overflow:auto;flex-shrink:0}

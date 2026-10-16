@@ -14,8 +14,9 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
-	"sort"
 	"strings"
+	"sync"
+	"time"
 
 	"github.com/mattermost/mattermost/server/public/plugin"
 	"golang.org/x/image/draw"
@@ -33,7 +34,10 @@ type Sticker struct {
 
 type Plugin struct {
 	plugin.MattermostPlugin
-	bundled map[string]Sticker
+	bundled        map[string]Sticker
+	catalogMu      sync.Mutex
+	cachedCatalog  []Sticker
+	catalogExpires time.Time
 }
 
 func main() { plugin.ClientMain(&Plugin{}) }
@@ -100,7 +104,7 @@ func (p *Plugin) OnActivate() error {
 	}
 	p.bundled = map[string]Sticker{}
 	root := filepath.Join(bundle, "assets", "stickers")
-	return filepath.WalkDir(root, func(path string, entry fs.DirEntry, walkErr error) error {
+	err = filepath.WalkDir(root, func(path string, entry fs.DirEntry, walkErr error) error {
 		if walkErr != nil {
 			return walkErr
 		}
@@ -118,6 +122,11 @@ func (p *Plugin) OnActivate() error {
 		p.bundled[id] = Sticker{ID: id, Name: strings.TrimSuffix(entry.Name(), filepath.Ext(path)), Pack: filepath.Base(filepath.Dir(path)), Data: data}
 		return nil
 	})
+	if err != nil {
+		return err
+	}
+	_, err = p.catalog()
+	return err
 }
 
 func respond(w http.ResponseWriter, status int, value any) {
@@ -128,54 +137,6 @@ func respond(w http.ResponseWriter, status int, value any) {
 
 func fail(w http.ResponseWriter, status int, message string) {
 	respond(w, status, map[string]string{"message": message})
-}
-
-func (p *Plugin) catalog() ([]Sticker, error) {
-	all := make(map[string]Sticker, len(p.bundled))
-	for id, sticker := range p.bundled {
-		sticker.Data = nil
-		all[id] = sticker
-	}
-	for page := 0; ; page++ {
-		keys, err := p.API.KVList(page, 100)
-		if err != nil {
-			return nil, err
-		}
-		for _, key := range keys {
-			if !strings.HasPrefix(key, "png_sticker_") {
-				continue
-			}
-			data, err := p.API.KVGet(key)
-			if err != nil {
-				return nil, err
-			}
-			var sticker Sticker
-			if err := json.Unmarshal(data, &sticker); err != nil {
-				return nil, err
-			}
-			sticker.Data = nil
-			if _, exists := all[sticker.ID]; !exists {
-				all[sticker.ID] = sticker
-			}
-		}
-		if len(keys) < 100 {
-			break
-		}
-	}
-	result := make([]Sticker, 0, len(all))
-	for _, sticker := range all {
-		result = append(result, sticker)
-	}
-	sort.Slice(result, func(i, j int) bool {
-		if result[i].Pack != result[j].Pack {
-			return result[i].Pack < result[j].Pack
-		}
-		if result[i].Name != result[j].Name {
-			return result[i].Name < result[j].Name
-		}
-		return result[i].ID < result[j].ID
-	})
-	return result, nil
 }
 
 func (p *Plugin) ServeHTTP(_ *plugin.Context, w http.ResponseWriter, r *http.Request) {
@@ -204,7 +165,7 @@ func (p *Plugin) ServeHTTP(_ *plugin.Context, w http.ResponseWriter, r *http.Req
 		}
 		sticker, found := p.bundled[id]
 		if !found {
-			data, err := p.API.KVGet("png_sticker_" + id)
+			data, err := p.API.KVGet(imagePrefix + id)
 			if err != nil {
 				fail(w, 500, "Failed to load sticker")
 				return
@@ -213,10 +174,7 @@ func (p *Plugin) ServeHTTP(_ *plugin.Context, w http.ResponseWriter, r *http.Req
 				fail(w, 404, "Sticker not found")
 				return
 			}
-			if err := json.Unmarshal(data, &sticker); err != nil {
-				fail(w, 500, "Invalid stored sticker")
-				return
-			}
+			sticker.Data = data
 		}
 		w.Header().Set("Content-Type", "image/png")
 		w.Header().Set("Cache-Control", "private, max-age=86400")
@@ -269,8 +227,7 @@ func (p *Plugin) ServeHTTP(_ *plugin.Context, w http.ResponseWriter, r *http.Req
 			respond(w, 200, bundled)
 			return
 		}
-		encoded, _ := json.Marshal(sticker)
-		if err := p.API.KVSet("png_sticker_"+sticker.ID, encoded); err != nil {
+		if err := p.saveSticker(sticker); err != nil {
 			p.API.LogError("Failed to save sticker", "error", err.Error())
 			fail(w, 500, "Failed to save sticker")
 			return

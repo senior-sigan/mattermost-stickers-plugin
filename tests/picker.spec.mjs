@@ -6,17 +6,19 @@ const catalog = images.map((name, i) => ({id: `${i}`, name: name.replace(/\.png$
 async function fixture(page, options = {}) {
     const posts = [];
     const uploads = [];
+    const imageRequests = [];
     let extra = [];
     await page.route('**/plugins/ru.senior-sigan.stickers/**', async (route) => {
         const url = route.request().url();
         if (url.includes('/image/')) {
             const id = url.split('/').at(-1);
+            imageRequests.push(id);
             await route.fulfill({contentType: 'image/png', body: await readFile(`stickers/cumemoji_stickers/${images[Number(id)] || images[0]}`)});
         } else if (route.request().method() === 'POST') {
             uploads.push(route.request().headers()['x-sticker-name']);
             extra = [{id: 'added', name: 'Added', pack: 'Uploaded'}];
             await route.fulfill({json: extra[0]});
-        } else { await route.fulfill({json: [...catalog, ...extra]}); }
+        } else { await route.fulfill({json: [...(options.catalog || catalog), ...extra]}); }
     });
     await page.route('**/api/v4/files', (route) => route.fulfill({json: {file_infos: [{id: 'file1'}]}}));
     await page.route('**/api/v4/posts', async (route) => {
@@ -25,7 +27,7 @@ async function fixture(page, options = {}) {
         await route.fulfill(options.fail ? {status: 403, json: {message: 'Posting denied'}} : {json: {id: 'post1'}});
     });
     await page.goto('/');
-    return {posts, uploads};
+    return {posts, uploads, imageRequests};
 }
 
 test('button beside emoji, five columns, scroll, one-click send, draft untouched', async ({page}) => {
@@ -37,7 +39,7 @@ test('button beside emoji, five columns, scroll, one-click send, draft untouched
     const dialog = page.getByRole('dialog', {name: 'Стикеры'});
     await expect(dialog.locator('input[type=file]')).toHaveCount(0);
     await expect(dialog.getByRole('button', {name: /Добавить/})).toHaveCount(0);
-    await expect(dialog.getByRole('button', {name: /^Отправить /})).toHaveCount(catalog.length);
+    await expect(dialog.getByRole('button', {name: /^Отправить /})).toHaveCount(Math.min(40, catalog.length));
     expect(await page.locator('.mm-stickers-grid').evaluate((grid) => getComputedStyle(grid).gridTemplateColumns.split(' ').length)).toBe(5);
     expect(await page.locator('.mm-stickers-grid').evaluate((grid) => grid.scrollHeight > grid.clientHeight)).toBe(true);
     await page.screenshot({path: 'build/stickers-preview.png'});
@@ -67,12 +69,17 @@ test('admin setting uploads PNG immediately and refreshes the shared catalog', a
     await page.evaluate(() => window.renderAdminSettings());
     const admin = page.locator('#admin-settings');
     await expect(admin).toHaveAttribute('data-setting', 'StickerLibrary');
-    await expect(admin).toContainText('Стикеров в каталоге: 108');
+    await expect(admin).toContainText(`Стикеров в каталоге: ${catalog.length}`);
     await admin.locator('input[type=file]').setInputFiles('stickers/cumemoji_stickers/001.png');
     await expect(admin.getByRole('status')).toContainText('Обработано файлов: 1');
-    await expect(admin).toContainText('Стикеров в каталоге: 109');
+    await expect(admin).toContainText(`Стикеров в каталоге: ${catalog.length + 1}`);
     expect(uploads).toEqual(['001.png']);
     await page.locator('#create_post').getByRole('button', {name: 'Выбрать стикер'}).click();
+    for (let i = 0; i < Math.ceil((catalog.length + 1) / 40); i++) {
+        if (await page.getByRole('button', {name: 'Отправить Added'}).count()) { break; }
+        await page.locator('.mm-stickers-grid').evaluate((grid) => {grid.scrollTop = grid.scrollHeight;});
+        await page.waitForTimeout(150);
+    }
     await expect(page.getByRole('button', {name: 'Отправить Added'})).toBeAttached();
 });
 
@@ -107,4 +114,37 @@ test('narrow screens keep picker within viewport and close on outside click', as
     const bounds = await page.getByRole('dialog').boundingBox();
     expect(bounds.x).toBeGreaterThanOrEqual(0); expect(bounds.x + bounds.width).toBeLessThanOrEqual(375);
     await page.locator('h1').click(); await expect(page.getByRole('dialog')).toHaveCount(0);
+});
+
+
+test('large catalog loads images in batches on scroll and can send the last sticker', async ({page}) => {
+    const large = Array.from({length: 1000}, (_, i) => ({id: String(i), name: `large-${i}`, pack: 'Large'}));
+    const {posts, imageRequests} = await fixture(page, {catalog: large});
+    await page.locator('#create_post').getByRole('button', {name: 'Выбрать стикер'}).click();
+    const tiles = page.locator('.mm-stickers-tile');
+    await expect(tiles).toHaveCount(40);
+    await expect(page.locator('.mm-stickers-count')).toHaveText('1000');
+    await expect.poll(() => imageRequests.length).toBeGreaterThan(0);
+    expect(imageRequests.length).toBeLessThanOrEqual(40);
+    expect(imageRequests).not.toContain('999');
+    const grid = page.locator('.mm-stickers-grid');
+    for (let count = 40; count < 1000; count += 40) {
+        await grid.evaluate((element) => {element.scrollTop = element.scrollHeight;});
+        await expect(tiles).toHaveCount(Math.min(count + 40, 1000));
+    }
+    await page.getByRole('button', {name: 'Отправить large-999', exact: true}).click();
+    await expect(page.getByRole('dialog')).toHaveCount(0);
+    expect(posts[0].props.stickers.id).toBe('999');
+    await page.locator('#create_post').getByRole('button', {name: 'Выбрать стикер'}).click();
+    await expect(tiles).toHaveCount(40);
+});
+
+test('keyboard users can load more without IntersectionObserver', async ({page}) => {
+    await page.addInitScript(() => {window.IntersectionObserver = undefined;});
+    await fixture(page);
+    await page.locator('#create_post').getByRole('button', {name: 'Выбрать стикер'}).click();
+    await expect(page.locator('.mm-stickers-tile')).toHaveCount(40);
+    await page.getByRole('button', {name: 'Ещё стикеры', exact: true}).focus();
+    await page.keyboard.press('Enter');
+    await expect(page.locator('.mm-stickers-tile')).toHaveCount(80);
 });
